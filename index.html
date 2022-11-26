@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bolão Copa do Mundo 2022</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="app">
+        <div class="banner">
+            <h1>Bolão 2022</h1>
+            <img src="./Assets/2022_FIFA_World_Cup.svg.png" alt="Logo Catar" class="logo">
+        </div>
+        <div class="ranking">
+            <div class="options">
+                <h1 class="name member-font">NOME</h1>
+                <h1 class="pts member-font">PTS</h1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    @font-face {
+        font-family: 'Qatar';
+        src: url('./fonts/Qatar2022-Bold.otf') format('opentype');
+    }
+
+    *{
+        padding: 0;
+        margin: 0;
+        top: 0;
+        font-family: 'Qatar';
+    }
+
+    body{
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(25,1,7,1) 48%, rgba(121,9,38,1) 100%);
+        color: #fff;
+    }
+
+    .app{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner{
+        background-image: url('./Assets/cima.png');
+        background-size: 100% 200px;
+        background-repeat: no-repeat;
+        height: 250px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner h1{
+        margin-top: 20px;
+        color: rgb(121,9,38);
+        font-size: 50px;
+    }
+
+    .logo{
+        width: 60px;
+    }
+
+    .ranking{
+        background-color: rgba(0, 0, 0, 0.295);
+        width: 90%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        border: 3px solid gold;
+        margin-bottom: 100px;
+    }
+
+    .options{
+        margin-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        border-bottom: 3px solid gold;
+    }
+
+    .name{
+        width: 50%;
+        margin-left: 10px;
+        font-size: 50px;
+        text-align: center;
+        border-right: 3px solid gold;
+    }
+
+    .pts{
+        width: 50%;
+        margin-left: 10px;
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .member{
+        margin-top: 30px;
+        padding-bottom: 30px;
+        display: flex;
+        border-bottom: 1px solid rgb(245, 240, 215);
+    }
+
+    .ranking *:last-child{
+        border-bottom: none ;
+    }
+
+    .member-font{
+        font-size: 30px;
+    }
+</style>
+
+<script>
+    let url = "https://opensheet.elk.sh/12zQwlRHcCa1Hj4AUsaZ5QWMG23ppEdekpIW4zkBjhQ0/Ranking";
+
+    fetch(url)
+        .then(res => res.json())
+        .then((out) => {
+            out.sort(function(a, b){
+                if (a.Pontuação > b.Pontuação){
+                    return -1;
+                } else{
+                    return true;
+                }
+            })
+
+            for (item in out) {
+                $('.ranking').append(`
+                    <div class="member">
+                        <h1 class="name member-font">${out[item].Nome}</h1>
+                        <h1 class="pts member-font">${out[item].Pontuação}</h1>
+                    </div>
+                `)
+            }
+        })
+        .catch(err => { throw err });
+
+</script>
