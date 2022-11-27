@@ -13,7 +13,7 @@
         </div>
         <div class="ranking">
             <div class="options">
-                <h1 class="name member-font member-name">PARTICIPANTE</h1>
+                <h1 class="name member-font">PARTICIPANTE</h1>
                 <h1 class="pts member-font">PTS</h1>
             </div>
         </div>
@@ -140,7 +140,7 @@
             for (item in out) {
                 $('.ranking').append(`
                     <div class="member">
-                        <h1 class="name member-font">${out[item].Nome}</h1>
+                        <h1 class="name member-font member-name">${out[item].Nome}</h1>
                         <h1 class="pts member-font">${out[item].Pontuação}</h1>
                     </div>
                 `)
