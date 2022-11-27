@@ -129,13 +129,10 @@
     fetch(url)
         .then(res => res.json())
         .then((out) => {
-            out.sort(function(a, b){
-                if (a.Pontuação > b.Pontuação){
-                    return -1;
-                } else{
-                    return true;
-                }
-            })
+
+            out.sort(function(a, b) {
+                return b.Pontuação - a.Pontuação;
+            });
 
             for (item in out) {
                 $('.ranking').append(`
